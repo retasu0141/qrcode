@@ -184,6 +184,7 @@ def namecheck(ID,name):
         conn.commit()
         return name
 
+
 def seve(ID):
     try:
         print('ok2')
@@ -198,6 +199,8 @@ def seve(ID):
             if ID in row:
                 dbID = row[0]
                 print('ok3')
+                print(text)
+                print(dbID)
                 cur.execute("UPDATE botdb SET name = '{name}' WHERE id='{dbID}';".format(name=text,dbID=dbID))
                 conn.commit()
                 print('ok3-2')
