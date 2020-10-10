@@ -149,11 +149,19 @@ def namecheck(ID,name):
     with open('date.json','r') as f:
         date = json.load(f)
     '''
+
     for row in cur:
         if ID in row:
-            setting_[ID]['text'] = row[2]
-            setting_[ID]['dbID'] = row[0]
-            return row[2]
+            try:
+                setting_[ID]['text'] = row[2]
+                setting_[ID]['dbID'] = row[0]
+                return row[2]
+            except:
+                setting_[ID] = {}
+                setting_[ID]['text'] = row[2]
+                setting_[ID]['dbID'] = row[0]
+                return row[2]
+
     '''
     if ID in date:
         if name in date[ID]:
