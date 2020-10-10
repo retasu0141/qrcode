@@ -7,7 +7,7 @@ li {
   list-style: none;
   float: left;
   padding:33px 20px;
-  
+
 }
 
 .header {
@@ -16,11 +16,21 @@ li {
   height: 90px;
 }
 
+html,　body {
+  height: 100%;
+}
+
+#wrapper {
+  width: 100%;
+  position:relative;
+  min-height: 100%;
+}
+
 .header-logo {
   float: left;
   font-size: 36px;
   padding:20px 40px;
-  
+
 }
 
 .header-logo span {
