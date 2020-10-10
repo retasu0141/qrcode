@@ -285,7 +285,8 @@ def handle_message(event):
                 setting_[user_id]['text'] = text
                 text_ = namecheck(user_id,text)
                 setting_[user_id]['point'] = point
-                line_bot_api.reply_message(msg_from,TextSendMessage(text='表示する文字を"{}"に変更したよ！'.format(point)))
+                line_bot_api.reply_message(msg_from,TextSendMessage(text='表示する文字を"{}"に変更したよ！'.format(text_)))
+                line_bot_api.reply_message(msg_from,TextSendMessage(text='あなたのURLは"https://retasu-qr-code.herokuapp.com/qr/{}"だよ！！'.format(user_id)))
             except Exception as e:
                 print (str(e))
         else:
