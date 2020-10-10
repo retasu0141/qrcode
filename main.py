@@ -285,13 +285,14 @@ def handle_message(event):
                     text = msg_text
                     setting_[user_id]['text'] = text
                     text_ = namecheck(user_id,text)
-                    setting_[user_id]['point'] = point
                     line_bot_api.reply_message(msg_from,TextSendMessage(text='表示する文字を"{}"に変更したよ！'.format(text_)))
                     line_bot_api.reply_message(msg_from,TextSendMessage(text='あなたのURLは"https://retasu-qr-code.herokuapp.com/qr/{}"だよ！！'.format(user_id)))
                 except Exception as e:
                     print (str(e))
-        except:
-            pass
+        except Exception as e:
+                    print (str(e))
+                    items = {'items': [{'type': 'action','action': {'type': 'message','label': '設定する','text': '設定する'}}]}
+                    line_bot_api.reply_message(msg_from,TextSendMessage(text='表示する文字を設定したいときは\n「設定する」\nと送信してね！\n\n下のボタンからも送信できるよ！',quick_reply=items))
         else:
             items = {'items': [{'type': 'action','action': {'type': 'message','label': '設定する','text': '設定する'}}]}
             line_bot_api.reply_message(msg_from,TextSendMessage(text='表示する文字を設定したいときは\n「設定する」\nと送信してね！\n\n下のボタンからも送信できるよ！',quick_reply=items))
