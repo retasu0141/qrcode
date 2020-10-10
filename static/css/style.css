@@ -20,10 +20,10 @@ html,　body {
   height: 100%;
 }
 
-#wrapper{
-   display:flex;
-   flex- direction: column;
-   min-height: 100vh;
+#wrapper {
+  width: 100%;
+  position:relative;
+  min-height: 100%;
 }
 
 .header-logo {
@@ -58,7 +58,8 @@ html,　body {
 .footer {
   background-color: #2f5167;
   color: #fff;
-  margin-top:auto;
+  height: 80px;
+  padding: 10px;
 }
 
 .footer h1 {
