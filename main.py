@@ -150,7 +150,7 @@ def namecheck(ID,name):
         date = json.load(f)
     '''
     for row in cur:
-        if ID+name in row:
+        if ID in row:
             setting_[ID]['text'] = row[2]
             setting_[ID]['dbID'] = row[0]
             return row[2]
@@ -229,7 +229,7 @@ def hello_world():
 @app.route("/qr/<ID>")
 def qrcode(ID):
     text = namecheck(ID,'はじめまして(デフォルト)')
-    return text
+    return render_template('HITOKOTO.html',text=text)
 
 @app.route("/callback", methods=['POST'])
 def callback():
