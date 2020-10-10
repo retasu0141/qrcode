@@ -155,11 +155,15 @@ def namecheck(ID,name):
             try:
                 setting_[ID]['text'] = row[2]
                 setting_[ID]['dbID'] = row[0]
+                print('01')
+                print(setting_[ID]['dbID'])
                 return row[2]
             except:
                 setting_[ID] = {}
                 setting_[ID]['text'] = row[2]
                 setting_[ID]['dbID'] = row[0]
+                print('02')
+                print(setting_[ID]['dbID'])
                 return row[2]
 
     '''
