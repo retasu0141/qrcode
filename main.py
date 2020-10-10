@@ -185,7 +185,7 @@ def namecheck(ID,name):
         return name
 
 
-def seve(ID):
+def seve(ID,text):
     try:
         print('ok2')
         print(setting_[ID]['dbID'])
@@ -204,12 +204,13 @@ def seve(ID):
                 cur.execute("UPDATE botdb SET name = '{name}' WHERE id='{dbID}';".format(name=text,dbID=dbID))
                 conn.commit()
                 print('ok3-2')
-                return
+                return text
         cur.execute("UPDATE botdb SET name = '{name}' WHERE id='{dbID}';".format(name=text,dbID=setting_[ID]['dbID']))
         conn.commit()
         print('ok4')
     except Exception as e:
         print (str(e))
+        return namecheck(user_id,text)
     '''
 
 
@@ -295,8 +296,7 @@ def handle_message(event):
                     setting2[user_id]['setting2'] = True
                     text = msg_text
                     setting_[user_id]['text'] = text
-                    seve(user_id)
-                    text_ = namecheck(user_id,text)
+                    text_ = seve(user_id,text)
                     line_bot_api.reply_message(msg_from,TextSendMessage(text='表示する文字を"{text}"に変更したよ！\nあなたのURLは"https://retasu-qr-code.herokuapp.com/qr/{user_id}"だよ！！'.format(text=text_,user_id=user_id)))
                 except Exception as e:
                     print (str(e))
