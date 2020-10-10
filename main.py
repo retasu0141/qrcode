@@ -278,6 +278,7 @@ def handle_message(event):
         set_ = 2
 '''
     if msg_text == '設定する':
+        namecheck(user_id,'test')
         line_bot_api.reply_message(msg_from,TextSendMessage(text='表示したい文字を入力してね！'))
         setting_[user_id] = {'use':True,'name':'name','point':0,'time':0,'timepoint':0,'ID':'','point2':0,'dbID':0}
         setting_[user_id]['ID'] = user_id
