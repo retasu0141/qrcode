@@ -161,6 +161,7 @@ def namecheck(ID,name):
             return point
     '''
     if point == None:
+        setting_[ID] = {}
         setting_[ID]['dbID'] = random_id
         setting_[ID]['text'] = name
         cur.execute("insert into botdb values({id},'{user_id}','{name}','{point}')".format(id=random_id,user_id=ID,name=name,point='0'))
@@ -168,6 +169,7 @@ def namecheck(ID,name):
         return name
 
     else:
+        setting_[ID] = {}
         setting_[ID]['dbID'] = random_id
         setting_[ID]['text'] = name
         cur.execute("insert into botdb values({id},'{user_id}','{name}','{point}')".format(id=random_id,user_id=ID,name=name,point='0'))
