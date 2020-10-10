@@ -201,7 +201,7 @@ def seve(ID,text):
                 print('ok3')
                 print(text)
                 print(dbID)
-                cur.execute("UPDATE botdb SET name = '{name}' WHERE id='{dbID}';".format(name=text,dbID=dbID))
+                cur.execute("UPDATE botdb SET name = '{name}' WHERE id='{dbID}';".format(name=text,dbID=setting_[ID]['dbID']))
                 conn.commit()
                 print('ok3-2')
                 return text
