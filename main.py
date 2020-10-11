@@ -158,7 +158,7 @@ def namecheck(ID,name):
                 print('01')
                 print(setting_[ID]['text'])
                 print(setting_[ID]['dbID'])
-                return row[2]
+                return row[1]
             except:
                 setting_[ID] = {}
                 setting_[ID]['text'] = row[1]
@@ -166,7 +166,7 @@ def namecheck(ID,name):
                 print('02')
                 print(setting_[ID]['text'])
                 print(setting_[ID]['dbID'])
-                return row[2]
+                return row[1]
 
     '''
     if ID in date:
