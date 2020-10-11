@@ -153,7 +153,7 @@ def namecheck(ID,name):
     for row in cur:
         if ID in row:
             try:
-                setting_[ID]['text'] = row[2]
+                setting_[ID]['text'] = row[1]
                 setting_[ID]['dbID'] = row[0]
                 print('01')
                 print(setting_[ID]['text'])
@@ -161,7 +161,7 @@ def namecheck(ID,name):
                 return row[2]
             except:
                 setting_[ID] = {}
-                setting_[ID]['text'] = row[2]
+                setting_[ID]['text'] = row[1]
                 setting_[ID]['dbID'] = row[0]
                 print('02')
                 print(setting_[ID]['text'])
