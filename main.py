@@ -143,7 +143,7 @@ def namecheck(ID,name):
     cur = conn.cursor()
     cur.execute("ROLLBACK")
     conn.commit()
-    cur.execute('SELECT * FROM botdb')
+    cur.execute('SELECT * FROM db')
     date[ID] = {'point':0}
     '''
     with open('date.json','r') as f:
@@ -178,7 +178,7 @@ def namecheck(ID,name):
         setting_[ID] = {}
         setting_[ID]['dbID'] = random_id
         setting_[ID]['text'] = name
-        cur.execute("insert into botdb values({id},'{user_id}','{name}','{point}')".format(id=random_id,user_id=ID,name=name,point='0'))
+        cur.execute("insert into db values({id},'{user_id}','{name}','{point}')".format(id=random_id,user_id=ID,name=name,point='0'))
         conn.commit()
         return name
 
@@ -186,7 +186,7 @@ def namecheck(ID,name):
         setting_[ID] = {}
         setting_[ID]['dbID'] = random_id
         setting_[ID]['text'] = name
-        cur.execute("insert into botdb values({id},'{user_id}','{name}','{point}')".format(id=random_id,user_id=ID,name=name,point='0'))
+        cur.execute("insert into db values({id},'{user_id}','{name}','{point}')".format(id=random_id,user_id=ID,name=name,point='0'))
         conn.commit()
         return name
 
@@ -199,7 +199,7 @@ def seve(ID,text):
         cur = conn.cursor()
         cur.execute("ROLLBACK")
         conn.commit()
-        cur.execute('SELECT * FROM botdb')
+        cur.execute('SELECT * FROM db')
         text = setting_[ID]['text']
         for row in cur:
             if ID in row:
@@ -207,11 +207,11 @@ def seve(ID,text):
                 print('ok3')
                 print(text)
                 print(dbID)
-                cur.execute("UPDATE botdb SET name = '{name}' WHERE id='{dbID}';".format(name=text,dbID=setting_[ID]['dbID']))
+                cur.execute("UPDATE db SET name = '{name}' WHERE id='{dbID}';".format(name=text,dbID=setting_[ID]['dbID']))
                 conn.commit()
                 print('ok3-2')
                 return text
-        cur.execute("UPDATE botdb SET name = '{name}' WHERE id='{dbID}';".format(name=text,dbID=setting_[ID]['dbID']))
+        cur.execute("UPDATE db SET name = '{name}' WHERE id='{dbID}';".format(name=text,dbID=setting_[ID]['dbID']))
         conn.commit()
         print('ok4')
     except Exception as e:
