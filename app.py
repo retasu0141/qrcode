@@ -19,6 +19,6 @@ class Entry(db.Model):
     __tablename__ = "db"
 
     # カラムを定義
-    user_id = db.Column(db.String(), nullable=False)
-    name = db.Column(db.String(), nullable=False)
-    point = db.Column(db.String(), nullable=False)
+    user_id = db.Column(db.String(), nullable=False, primary_key=True)
+    name = db.Column(db.String(), nullable=False, primary_key=True)
+    point = db.Column(db.String(), nullable=False, primary_key=True)
