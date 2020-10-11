@@ -16,7 +16,7 @@ db = SQLAlchemy(app)
 
 class Entry(db.Model):
     # テーブル名を定義
-    __tablename__ = "mamadb"
+    __tablename__ = "db"
 
     # カラムを定義
     user_id = db.Column(db.String(), nullable=False)
