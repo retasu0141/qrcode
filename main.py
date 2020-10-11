@@ -207,11 +207,11 @@ def seve(ID,text):
                 print('ok3')
                 print(text)
                 print(dbID)
-                cur.execute("UPDATE db SET name = '{name}' WHERE id='{dbID}';".format(name=text,dbID=setting_[ID]['dbID']))
+                cur.execute("UPDATE db SET name = '{name}' WHERE user_id='{user_id}';".format(name=text,user_id=ID))
                 conn.commit()
                 print('ok3-2')
                 return text
-        cur.execute("UPDATE db SET name = '{name}' WHERE id='{dbID}';".format(name=text,dbID=setting_[ID]['dbID']))
+        cur.execute("UPDATE db SET name = '{name}' WHERE user_id='{user_id}';".format(name=text,user_id=ID))
         conn.commit()
         print('ok4')
     except Exception as e:
