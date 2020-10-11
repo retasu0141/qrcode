@@ -178,7 +178,7 @@ def namecheck(ID,name):
         setting_[ID] = {}
         setting_[ID]['dbID'] = random_id
         setting_[ID]['text'] = name
-        cur.execute("insert into db values({id},'{user_id}','{name}','{point}')".format(user_id=ID,name=name,point='0'))
+        cur.execute("insert into db values('{user_id}','{name}','{point}')".format(user_id=ID,name=name,point='0'))
         conn.commit()
         return name
 
@@ -186,7 +186,7 @@ def namecheck(ID,name):
         setting_[ID] = {}
         setting_[ID]['dbID'] = random_id
         setting_[ID]['text'] = name
-        cur.execute("insert into db values({id},'{user_id}','{name}','{point}')".format(user_id=ID,name=name,point='0'))
+        cur.execute("insert into db values('{user_id}','{name}','{point}')".format(user_id=ID,name=name,point='0'))
         conn.commit()
         return name
 
