@@ -154,7 +154,7 @@ def namecheck(ID,name):
         if ID in row:
             try:
                 if(row[0][-1:]=="s"):
-                    return
+                    pass
                 else:
                     setting_[ID]['text'] = row[1]
                     setting_[ID]['dbID'] = row[0]
@@ -164,7 +164,7 @@ def namecheck(ID,name):
                     return row[1]
             except:
                 if(row[0][-1:]=="s"):
-                    return
+                    pass
                 else:
                     setting_[ID] = {}
                     setting_[ID]['text'] = row[1]
