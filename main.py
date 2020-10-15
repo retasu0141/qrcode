@@ -403,10 +403,10 @@ def handle_message(event):
             try:
                 print('ok-12')
                 setting2[user_id]['setting2'] = False
-                ID_ = "U76d18383a9b659b9ab3d0e43d06c1e78"#idget()
+                ID_ = idget()
                 seve2(ID_,user_id)
                 items = {'items': [{'type': 'action','action': {'type': 'message','label': '返信する','text': '返信送信'}}]}
-                line_bot_api.multicast([ID_],TextSendMessage(text='【メッセージが届いたよ！】\n\n' + msg_text,quick_reply=items))
+                line_bot_api.multicast([ID_],TextSendMessage(text='【メッセージが届いたよ！】\n\n' + msg_text + '\n\n返信する場合は「返信送信」と送信してね！\n下のボタンからも送信できるよ！',quick_reply=items))
                 line_bot_api.reply_message(msg_from,TextSendMessage(text='送信できたよ！'))
             except Exception as e:
                 line_bot_api.reply_message(msg_from,TextSendMessage(text='送信失敗！'))
@@ -423,8 +423,8 @@ def handle_message(event):
                 line_bot_api.reply_message(msg_from,TextSendMessage(text='送信失敗！'))
                 print (str(e))
         else:
-            items = {'items': [{'type': 'action','action': {'type': 'message','label': '設定する','text': '設定する'}}]}
-            line_bot_api.reply_message(msg_from,TextSendMessage(text='表示する文字を設定したいときは\n「設定する」\nと送信してね！\n\n下のボタンからも送信できるよ！',quick_reply=items))
+            items = {'items': [{'type': 'action','action': {'type': 'message','label': '設定する','text': '設定する'}},{'type': 'action','action': {'type': 'message','label': 'メッセージ送信','text': 'メッセージ送信'}}]}
+            line_bot_api.reply_message(msg_from,TextSendMessage(text='表示する文字を設定したいときは\n「設定する」\nと送信してね！\n\nひとこと連絡を使う場合は\n「メッセージ送信」\nと送信してね！\n\n下のボタンからも送信できるよ！',quick_reply=items))
 
 
 
