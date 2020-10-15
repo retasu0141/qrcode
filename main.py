@@ -153,20 +153,20 @@ def namecheck(ID,name):
     for row in cur:
         if ID in row:
             try:
-                setting_[ID]['text'] = row[2]
+                setting_[ID]['text'] = row[1]
                 setting_[ID]['dbID'] = row[0]
                 print('01')
                 print(setting_[ID]['text'])
                 print(setting_[ID]['dbID'])
-                return row[2]
+                return row[1]
             except:
                 setting_[ID] = {}
-                setting_[ID]['text'] = row[2]
+                setting_[ID]['text'] = row[1]
                 setting_[ID]['dbID'] = row[0]
                 print('02')
                 print(setting_[ID]['text'])
                 print(setting_[ID]['dbID'])
-                return row[2]
+                return row[1]
 
     '''
     if ID in date:
@@ -190,6 +190,41 @@ def namecheck(ID,name):
         conn.commit()
         return name
 
+def idget():
+    random_id = random.randint(1,999999)
+    point = None
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("ROLLBACK")
+    conn.commit()
+    cur.execute('SELECT * FROM db')
+    date[ID] = {'point':0}
+    '''
+    with open('date.json','r') as f:
+        date = json.load(f)
+    '''
+    ID_list = []
+    for row in cur:
+        ID_list.append(row[0])
+    return random.choice(ID_list)
+
+def IDcheck(ID):
+    random_id = random.randint(1,999999)
+    point = None
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("ROLLBACK")
+    conn.commit()
+    cur.execute('SELECT * FROM db')
+    date[ID] = {'point':0}
+    '''
+    with open('date.json','r') as f:
+        date = json.load(f)
+    '''
+
+    for row in cur:
+        if ID+'Ms' in row:
+            return row[1]
 
 def seve(ID,text):
     try:
@@ -227,7 +262,33 @@ def seve(ID,text):
         json.dump(date, f)
     '''
 
-
+def seve2(ID,ID2):
+    #ID=送られた側 ID2=送った側
+    try:
+        print('ok2')
+        print(setting_[ID]['dbID'])
+        conn = get_connection()
+        cur = conn.cursor()
+        cur.execute("ROLLBACK")
+        conn.commit()
+        cur.execute('SELECT * FROM db')
+        text = setting_[ID]['text']
+        for row in cur:
+            if ID+'Ms' in row:
+                dbID = row[0]
+                print('ok3')
+                print(text)
+                print(dbID)
+                cur.execute("UPDATE db SET name = '{name}' WHERE user_id='{user_id}';".format(name=ID2,user_id=ID+'Ms'))
+                conn.commit()
+                print('ok3-2')
+                return text
+        cur.execute("UPDATE db SET name = '{name}' WHERE user_id='{user_id}';".format(name=ID2,user_id=ID+'Ms'))
+        conn.commit()
+        print('ok4')
+    except Exception as e:
+        print (str(e))
+        return namecheck(user_id,text)
 
 
 #環境変数取得
@@ -301,6 +362,18 @@ def handle_message(event):
         setting2[user_id] = {'setting1':False,'setting2':False,'setting3':False,'setting4':False,'setting5':False,'setting6':False,'setting7':False,'setting8':False,'setting9':False,'setting10':False,}
         set_ = 2
         setting2[user_id]['setting2'] = True
+
+    if '返信送信' in msg_text:
+        #namecheck(user_id,'test')
+        line_bot_api.reply_message(msg_from,TextSendMessage(text="送りたいメッセージ内容を送信してね！"))
+        setting_[user_id] = {'use':True,'name':'name','point':0,'time':0,'timepoint':0,'ID':'','point2':0,'dbID':0}
+        setting_[user_id]['ID'] = user_id
+        Time[user_id] = {'count':0,'pointcount_1':0,'pointcount_2':0,'pointcount2_1':0,'pointcount2_2':0}
+        setting2[user_id] = {'setting1':False,'setting2':False,'setting3':False,'setting4':False,'setting5':False,'setting6':False,'setting7':False,'setting8':False,'setting9':False,'setting10':False,}
+        set_ = 2
+        setting2[user_id]['setting3'] = True
+
+
 #    if 'メッセージ:' in msg_text:
 #        #namecheck(user_id,'test')
 #        msg_text_ = msg_text.replace("メッセージ:","")
@@ -328,7 +401,20 @@ def handle_message(event):
             try:
                 print('ok-12')
                 setting2[user_id]['setting2'] = False
-                line_bot_api.multicast(['U76d18383a9b659b9ab3d0e43d06c1e78','U76d18383a9b659b9ab3d0e43d06c1e78'],TextSendMessage(text=msg_text))
+                ID_ = idget()
+                seve2(ID_,user_id)
+                items = {'items': [{'type': 'action','action': {'type': 'message','label': '返信する','text': '返信送信'}}]}
+                line_bot_api.multicast([ID_],TextSendMessage(text='【メッセージが届いたよ！】\n\n' + msg_text,quick_reply=items))
+                line_bot_api.reply_message(msg_from,TextSendMessage(text='送信できたよ！'))
+            except Exception as e:
+                line_bot_api.reply_message(msg_from,TextSendMessage(text='送信失敗！'))
+                print (str(e))
+        if setting2[user_id]['setting3'] == True and user_id == setting_[user_id]['ID']:
+            try:
+                print('ok-13')
+                setting2[user_id]['setting3'] = False
+                ID_ = IDcheck(user_id)
+                line_bot_api.multicast([ID_],TextSendMessage(text='【返信が届いたよ！】\n\n' + msg_text))
                 line_bot_api.reply_message(msg_from,TextSendMessage(text='送信できたよ！'))
             except Exception as e:
                 line_bot_api.reply_message(msg_from,TextSendMessage(text='送信失敗！'))
