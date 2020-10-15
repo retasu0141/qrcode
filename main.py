@@ -204,7 +204,7 @@ def idget():
     '''
     ID_list = []
     for row in cur:
-        if(str[-1:]=="s"):
+        if(row[0][-1:]=="s"):
             pass
         else:
             ID_list.append(row[0])
