@@ -270,7 +270,6 @@ def seve2(ID,ID2):
         cur.execute("ROLLBACK")
         conn.commit()
         cur.execute('SELECT * FROM db')
-        text = setting_[ID]['text']
         for row in cur:
             if ID+'Ms' in row:
                 dbID = row[0]
