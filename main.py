@@ -294,8 +294,13 @@ def handle_message(event):
         setting2[user_id]['setting1'] = True
     if 'メッセージ送信' in msg_text:
         #namecheck(user_id,'test')
-        items = {'items': [{'type': 'action','action': {'type': 'message','label': 'メッセージ送信','text': 'メッセージ:ここに入力'}}]}
-        line_bot_api.reply_message(msg_from,TextSendMessage(text="下の'メッセージ'ボタンを押してね！\n'メッセージ:'の後に送りたいメッセージ内容を入力してね！",quick_reply=items))
+        line_bot_api.reply_message(msg_from,TextSendMessage(text="【送りたいメッセージ内容を送信してね！】\n・自分の送信したメッセージが返ってきたら送信完了だよ！"))
+        setting_[user_id] = {'use':True,'name':'name','point':0,'time':0,'timepoint':0,'ID':'','point2':0,'dbID':0}
+        setting_[user_id]['ID'] = user_id
+        Time[user_id] = {'count':0,'pointcount_1':0,'pointcount_2':0,'pointcount2_1':0,'pointcount2_2':0}
+        setting2[user_id] = {'setting1':False,'setting2':False,'setting3':False,'setting4':False,'setting5':False,'setting6':False,'setting7':False,'setting8':False,'setting9':False,'setting10':False,}
+        set_ = 2
+        setting2[user_id]['setting2'] = True
     if 'メッセージ:' in msg_text:
         #namecheck(user_id,'test')
         msg_text_ = msg_text.replace("メッセージ:","")
@@ -309,11 +314,22 @@ def handle_message(event):
                 try:
                     print('ok')
                     setting2[user_id]['setting1'] = False
-                    setting2[user_id]['setting2'] = True
                     text = msg_text
                     setting_[user_id]['text'] = text
                     text_ = seve(user_id,text)
                     line_bot_api.reply_message(msg_from,TextSendMessage(text='表示する文字を"{text}"に変更したよ！\nあなたのURLは"https://retasu-qr-code.herokuapp.com/qr/{user_id}"だよ！！'.format(text=text_,user_id=user_id)))
+                except Exception as e:
+                    print (str(e))
+        except Exception as e:
+                    print (str(e))
+                    items = {'items': [{'type': 'action','action': {'type': 'message','label': '設定する','text': '設定する'}}]}
+                    line_bot_api.reply_message(msg_from,TextSendMessage(text='表示する文字を設定したいときは\n「設定する」\nと送信してね！\n\n下のボタンからも送信できるよ！',quick_reply=items))
+        try:
+            if setting2[user_id]['setting2'] == True and user_id == setting_[user_id]['ID']:
+                try:
+                    print('ok-12')
+                    setting2[user_id]['setting2'] = False
+                    line_bot_api.multicast(['U76d18383a9b659b9ab3d0e43d06c1e78','U76d18383a9b659b9ab3d0e43d06c1e78'],TextSendMessage(text=msg_text))
                 except Exception as e:
                     print (str(e))
         except Exception as e:
