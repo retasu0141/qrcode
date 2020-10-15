@@ -279,13 +279,9 @@ def seve2(ID,ID2):
                 cur.execute("UPDATE db SET name = '{name}' WHERE user_id='{user_id}';".format(name=ID2,user_id=ID+'Ms'))
                 conn.commit()
                 print('ok3-2')
-                return text
+                return
         cur.execute("UPDATE db SET name = '{name}' WHERE user_id='{user_id}';".format(name=ID2,user_id=ID+'Ms'))
-        conn.commit()
-        print('ok4')
-    except Exception as e:
-        print (str(e))
-        return namecheck(user_id,text)
+        return
 
 
 #環境変数取得
