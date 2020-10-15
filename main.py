@@ -153,20 +153,26 @@ def namecheck(ID,name):
     for row in cur:
         if ID in row:
             try:
-                setting_[ID]['text'] = row[1]
-                setting_[ID]['dbID'] = row[0]
-                print('01')
-                print(setting_[ID]['text'])
-                print(setting_[ID]['dbID'])
-                return row[1]
+                if(row[0][-1:]=="s"):
+                    return
+                else:
+                    setting_[ID]['text'] = row[1]
+                    setting_[ID]['dbID'] = row[0]
+                    print('01')
+                    print(setting_[ID]['text'])
+                    print(setting_[ID]['dbID'])
+                    return row[1]
             except:
-                setting_[ID] = {}
-                setting_[ID]['text'] = row[1]
-                setting_[ID]['dbID'] = row[0]
-                print('02')
-                print(setting_[ID]['text'])
-                print(setting_[ID]['dbID'])
-                return row[1]
+                if(row[0][-1:]=="s"):
+                    return
+                else:
+                    setting_[ID] = {}
+                    setting_[ID]['text'] = row[1]
+                    setting_[ID]['dbID'] = row[0]
+                    print('02')
+                    print(setting_[ID]['text'])
+                    print(setting_[ID]['dbID'])
+                    return row[1]
 
     '''
     if ID in date:
