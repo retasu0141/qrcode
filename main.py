@@ -236,7 +236,7 @@ def IDcheck(ID):
 
 def seve(ID,text):
     try:
-        namecheck(ID,text)
+        #namecheck(ID,text)
         print('ok2')
         print(setting_[ID]['dbID'])
         conn = get_connection()
@@ -244,7 +244,7 @@ def seve(ID,text):
         cur.execute("ROLLBACK")
         conn.commit()
         cur.execute('SELECT * FROM db')
-        text = setting_[ID]['text']
+        #text = setting_[ID]['text']
         for row in cur:
             if ID in row:
                 dbID = row[0]
