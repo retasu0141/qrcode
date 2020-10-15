@@ -350,6 +350,7 @@ def handle_message(event):
         setting2[user_id] = {'setting1':False,'setting2':False,'setting3':False,'setting4':False,'setting5':False,'setting6':False,'setting7':False,'setting8':False,'setting9':False,'setting10':False,}
         set_ = 2
         setting2[user_id]['setting1'] = True
+        return
     if 'メッセージ送信' in msg_text:
         #namecheck(user_id,'test')
         line_bot_api.reply_message(msg_from,TextSendMessage(text="送りたいメッセージ内容を送信してね！"))
@@ -359,6 +360,7 @@ def handle_message(event):
         setting2[user_id] = {'setting1':False,'setting2':False,'setting3':False,'setting4':False,'setting5':False,'setting6':False,'setting7':False,'setting8':False,'setting9':False,'setting10':False,}
         set_ = 2
         setting2[user_id]['setting2'] = True
+        return
 
     if '返信送信' in msg_text:
         #namecheck(user_id,'test')
@@ -369,6 +371,7 @@ def handle_message(event):
         setting2[user_id] = {'setting1':False,'setting2':False,'setting3':False,'setting4':False,'setting5':False,'setting6':False,'setting7':False,'setting8':False,'setting9':False,'setting10':False,}
         set_ = 2
         setting2[user_id]['setting3'] = True
+        return
 
 
 #    if 'メッセージ:' in msg_text:
