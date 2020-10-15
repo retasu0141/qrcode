@@ -236,6 +236,7 @@ def IDcheck(ID):
 
 def seve(ID,text):
     try:
+        namecheck(ID,text)
         print('ok2')
         print(setting_[ID]['dbID'])
         conn = get_connection()
