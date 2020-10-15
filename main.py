@@ -153,20 +153,20 @@ def namecheck(ID,name):
     for row in cur:
         if ID in row:
             try:
-                setting_[ID]['text'] = row[1]
+                setting_[ID]['text'] = row[2]
                 setting_[ID]['dbID'] = row[0]
                 print('01')
                 print(setting_[ID]['text'])
                 print(setting_[ID]['dbID'])
-                return row[1]
+                return row[2]
             except:
                 setting_[ID] = {}
-                setting_[ID]['text'] = row[1]
+                setting_[ID]['text'] = row[2]
                 setting_[ID]['dbID'] = row[0]
                 print('02')
                 print(setting_[ID]['text'])
                 print(setting_[ID]['dbID'])
-                return row[1]
+                return row[2]
 
     '''
     if ID in date:
@@ -292,6 +292,15 @@ def handle_message(event):
         setting2[user_id] = {'setting1':False,'setting2':False,'setting3':False,'setting4':False,'setting5':False,'setting6':False,'setting7':False,'setting8':False,'setting9':False,'setting10':False,}
         set_ = 2
         setting2[user_id]['setting1'] = True
+    if 'メッセージ送信' in msg_text:
+        #namecheck(user_id,'test')
+        items = {'items': [{'type': 'action','action': {'type': 'message','label': 'メッセージ送信','text': 'メッセージ:ここに入力'}}]}
+        line_bot_api.reply_message(msg_from,TextSendMessage(text="下の'メッセージ'ボタンを押してね！\n'メッセージ:'の後に送りたいメッセージ内容を入力してね！",quick_reply=items))
+    if 'メッセージ:' in msg_text:
+        #namecheck(user_id,'test')
+        msg_text_ = msg_text.replace("メッセージ:","")
+        line_bot_api.reply_message(msg_from,TextSendMessage(text='送信したよ！'))
+        line_bot_api.reply_message("U76d18383a9b659b9ab3d0e43d06c1e78",TextSendMessage(text=msg_text_))
 
 
     else:
