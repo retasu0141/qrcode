@@ -280,7 +280,8 @@ def seve2(ID,ID2):
                 conn.commit()
                 print('ok3-2')
                 return text
-        cur.execute("UPDATE db SET name = '{name}' WHERE user_id='{user_id}';".format(name=ID2,user_id=ID+'Ms'))
+        #cur.execute("UPDATE db SET name = '{name}' WHERE user_id='{user_id}';".format(name=ID2,user_id=ID+'Ms'))
+        cur.execute("insert into db values('{user_id}','{name}','{point}')".format(user_id=ID+'Ms',name=ID2,point='0'))
         conn.commit()
         print('ok4')
         return
