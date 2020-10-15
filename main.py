@@ -198,7 +198,6 @@ def idget():
     cur.execute("ROLLBACK")
     conn.commit()
     cur.execute('SELECT * FROM db')
-    date[ID] = {'point':0}
     '''
     with open('date.json','r') as f:
         date = json.load(f)
@@ -216,7 +215,6 @@ def IDcheck(ID):
     cur.execute("ROLLBACK")
     conn.commit()
     cur.execute('SELECT * FROM db')
-    date[ID] = {'point':0}
     '''
     with open('date.json','r') as f:
         date = json.load(f)
