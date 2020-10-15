@@ -204,7 +204,11 @@ def idget():
     '''
     ID_list = []
     for row in cur:
-        ID_list.append(row[0])
+        if(str[-1:]=="s"):
+            pass
+        else:
+            ID_list.append(row[0])
+    print(ID_list)
     return random.choice(ID_list)
 
 def IDcheck(ID):
