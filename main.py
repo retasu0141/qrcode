@@ -262,26 +262,25 @@ def seve(ID,text):
 
 def seve2(ID,ID2):
     #ID=送られた側 ID2=送った側
-    try:
-        print('ok2')
-        print(setting_[ID]['dbID'])
-        conn = get_connection()
-        cur = conn.cursor()
-        cur.execute("ROLLBACK")
-        conn.commit()
-        cur.execute('SELECT * FROM db')
-        for row in cur:
-            if ID+'Ms' in row:
-                dbID = row[0]
-                print('ok3')
-                print(text)
-                print(dbID)
-                cur.execute("UPDATE db SET name = '{name}' WHERE user_id='{user_id}';".format(name=ID2,user_id=ID+'Ms'))
-                conn.commit()
-                print('ok3-2')
-                return
-        cur.execute("UPDATE db SET name = '{name}' WHERE user_id='{user_id}';".format(name=ID2,user_id=ID+'Ms'))
-        return
+    print('ok2')
+    print(setting_[ID]['dbID'])
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("ROLLBACK")
+    conn.commit()
+    cur.execute('SELECT * FROM db')
+    for row in cur:
+        if ID+'Ms' in row:
+            dbID = row[0]
+            print('ok3')
+            print(text)
+            print(dbID)
+            cur.execute("UPDATE db SET name = '{name}' WHERE user_id='{user_id}';".format(name=ID2,user_id=ID+'Ms'))
+            conn.commit()
+            print('ok3-2')
+            return
+    cur.execute("UPDATE db SET name = '{name}' WHERE user_id='{user_id}';".format(name=ID2,user_id=ID+'Ms'))
+    return
 
 
 #環境変数取得
