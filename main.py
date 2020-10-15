@@ -222,7 +222,7 @@ def IDcheck(ID):
 
     for row in cur:
         if ID+'Ms' in row:
-            return row[1]
+            return row[0]
 
 def seve(ID,text):
     try:
