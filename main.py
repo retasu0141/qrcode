@@ -355,7 +355,7 @@ def handle_message(event):
         setting2[user_id]['setting1'] = True
     if 'メッセージ送信' in msg_text:
         #namecheck(user_id,'test')
-        line_bot_api.reply_message(msg_from,TextSendMessage(text="【送りたいメッセージ内容を送信してね！】\n・自分の送信したメッセージが返ってきたら送信完了だよ！"))
+        line_bot_api.reply_message(msg_from,TextSendMessage(text="送りたいメッセージ内容を送信してね！"))
         setting_[user_id] = {'use':True,'name':'name','point':0,'time':0,'timepoint':0,'ID':'','point2':0,'dbID':0}
         setting_[user_id]['ID'] = user_id
         Time[user_id] = {'count':0,'pointcount_1':0,'pointcount_2':0,'pointcount2_1':0,'pointcount2_2':0}
