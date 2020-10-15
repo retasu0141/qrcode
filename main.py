@@ -324,18 +324,15 @@ def handle_message(event):
                     print (str(e))
                     items = {'items': [{'type': 'action','action': {'type': 'message','label': '設定する','text': '設定する'}}]}
                     line_bot_api.reply_message(msg_from,TextSendMessage(text='表示する文字を設定したいときは\n「設定する」\nと送信してね！\n\n下のボタンからも送信できるよ！',quick_reply=items))
-        try:
-            if setting2[user_id]['setting2'] == True and user_id == setting_[user_id]['ID']:
-                try:
-                    print('ok-12')
-                    setting2[user_id]['setting2'] = False
-                    line_bot_api.multicast(['U76d18383a9b659b9ab3d0e43d06c1e78','U76d18383a9b659b9ab3d0e43d06c1e78'],TextSendMessage(text=msg_text))
-                except Exception as e:
-                    print (str(e))
-        except Exception as e:
-                    print (str(e))
-                    items = {'items': [{'type': 'action','action': {'type': 'message','label': '設定する','text': '設定する'}}]}
-                    line_bot_api.reply_message(msg_from,TextSendMessage(text='表示する文字を設定したいときは\n「設定する」\nと送信してね！\n\n下のボタンからも送信できるよ！',quick_reply=items))
+        if setting2[user_id]['setting2'] == True and user_id == setting_[user_id]['ID']:
+            try:
+                print('ok-12')
+                setting2[user_id]['setting2'] = False
+                line_bot_api.multicast(['U76d18383a9b659b9ab3d0e43d06c1e78','U76d18383a9b659b9ab3d0e43d06c1e78'],TextSendMessage(text=msg_text))
+                line_bot_api.reply_message(msg_from,TextSendMessage(text='送信できたよ！'))
+            except Exception as e:
+                line_bot_api.reply_message(msg_from,TextSendMessage(text='送信失敗！'))
+                print (str(e))
         else:
             items = {'items': [{'type': 'action','action': {'type': 'message','label': '設定する','text': '設定する'}}]}
             line_bot_api.reply_message(msg_from,TextSendMessage(text='表示する文字を設定したいときは\n「設定する」\nと送信してね！\n\n下のボタンからも送信できるよ！',quick_reply=items))
