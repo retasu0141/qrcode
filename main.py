@@ -301,11 +301,11 @@ def handle_message(event):
         setting2[user_id] = {'setting1':False,'setting2':False,'setting3':False,'setting4':False,'setting5':False,'setting6':False,'setting7':False,'setting8':False,'setting9':False,'setting10':False,}
         set_ = 2
         setting2[user_id]['setting2'] = True
-    if 'メッセージ:' in msg_text:
-        #namecheck(user_id,'test')
-        msg_text_ = msg_text.replace("メッセージ:","")
-        line_bot_api.reply_message(msg_from,TextSendMessage(text='送信したよ！'))
-        line_bot_api.reply_message("U76d18383a9b659b9ab3d0e43d06c1e78",TextSendMessage(text=msg_text_))
+#    if 'メッセージ:' in msg_text:
+#        #namecheck(user_id,'test')
+#        msg_text_ = msg_text.replace("メッセージ:","")
+#        line_bot_api.reply_message(msg_from,TextSendMessage(text='送信したよ！'))
+#        line_bot_api.reply_message("U76d18383a9b659b9ab3d0e43d06c1e78",TextSendMessage(text=msg_text_))
 
 
     else:
