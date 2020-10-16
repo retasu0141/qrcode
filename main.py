@@ -428,7 +428,7 @@ def handle_message(event):
                 setting2[user_id]['setting3'] = False
                 ID_ = IDcheck(user_id)
                 print(ID_)
-                seve2('aaa',user_id)
+                seve2(ID_,'aaa')
                 line_bot_api.multicast([ID_],TextSendMessage(text='【返信が届いたよ！】\n\n' + msg_text))
                 line_bot_api.reply_message(msg_from,TextSendMessage(text='送信できたよ！'))
             except Exception as e:
