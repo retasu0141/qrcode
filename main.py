@@ -432,7 +432,7 @@ def handle_message(event):
                 line_bot_api.multicast([ID_],TextSendMessage(text='【返信が届いたよ！】\n\n' + msg_text))
                 line_bot_api.reply_message(msg_from,TextSendMessage(text='送信できたよ！'))
             except Exception as e:
-                line_bot_api.reply_message(msg_from,TextSendMessage(text='送信失敗！'))
+                line_bot_api.reply_message(msg_from,TextSendMessage(text='送信失敗！\n返信は1メッセージに1回しかできないよ！'))
                 print (str(e))
         else:
             items = {'items': [{'type': 'action','action': {'type': 'message','label': '設定する','text': '設定する'}},{'type': 'action','action': {'type': 'message','label': 'メッセージ送信','text': 'メッセージ送信'}}]}
