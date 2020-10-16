@@ -283,13 +283,14 @@ def seve2(ID,ID2):
         cur.execute('SELECT * FROM db')
         for row in cur:
             if ID+'Ms' in row:
+                print(row)
                 dbID = row[0]
                 print('ok3')
                 print(dbID)
                 cur.execute("UPDATE db SET name = '{name}' WHERE user_id='{user_id}';".format(name=ID2,user_id=ID+'Ms'))
                 conn.commit()
                 print('ok3-2')
-                return text
+                return
         #cur.execute("UPDATE db SET name = '{name}' WHERE user_id='{user_id}';".format(name=ID2,user_id=ID+'Ms'))
         cur.execute("insert into db values('{user_id}','{name}','{point}')".format(user_id=ID+'Ms',name=ID2,point='0'))
         conn.commit()
