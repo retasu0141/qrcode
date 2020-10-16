@@ -285,7 +285,6 @@ def seve2(ID,ID2):
             if ID+'Ms' in row:
                 dbID = row[0]
                 print('ok3')
-                print(text)
                 print(dbID)
                 cur.execute("UPDATE db SET name = '{name}' WHERE user_id='{user_id}';".format(name=ID2,user_id=ID+'Ms'))
                 conn.commit()
